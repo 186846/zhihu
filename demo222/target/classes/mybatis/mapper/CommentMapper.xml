@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.CommentDao">
+
+    <!--查询所有评论（没有用）-->
+    <select id="findAll" resultType="com.example.demo222.entity.Comment">
+        select * from comment;
+    </select>
+    <!--通过id查询某个话题的所有评论-->
+    <select id="selectComments" resultType="com.example.demo222.entity.Comment">
+        select * from comment where topic_id = #{topic_id};
+    </select>
+
+    <!--添加评论-->
+    <insert id="save" parameterType="com.example.demo222.entity.Comment">
+        insert comment (topic_id,username,comment) values (#{topic_id},#{username},#{comment});
+    </insert>
+
+    <!--通过username查询问题-->
+    <select id="selectbyusername" resultType="com.example.demo222.entity.Comment">
+        select * from comment where username = #{username};
+    </select>
+</mapper>
