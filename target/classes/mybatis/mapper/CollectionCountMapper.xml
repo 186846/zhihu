@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.CollectionCountDao">
+    <!--通过topicid查询用户问题的收藏数-->
+    <select id="selectById" resultType="com.example.demo222.entity.CollectionCount">
+        select * from collectioncount where topicid = #{topicid};
+    </select>
+    <!--通过username查询用户问题的收藏数-->
+    <select id="selectbyusername" resultType="com.example.demo222.entity.CollectionCount">
+        select * from collectioncount where username = #{username};
+    </select>
+
+    <!--插入新的收藏数据-->
+    <insert id="save" parameterType="com.example.demo222.entity.CollectionCount">
+        insert collectioncount (topicid,username,count) values (#{topicid},#{username},#{count});
+    </insert>
+
+    <!--更新数据-->
+    <update id="update">
+        update collectioncount
+        <set >
+            <if test="topicid != null" >
+                topicid = #{topicid,jdbcType=VARCHAR},
+            </if>
+
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+
+            <if test="count != null" >
+                count = #{count,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where topicid = #{topicid,jdbcType=INTEGER}
+    </update>
+    <!--当count-1为零时，删除该数据-->
+    <delete id="delete" parameterType="com.example.demo222.entity.CollectionCount">
+        delete from collectioncount where topicid = #{topicid} and where username = #{username};
+    </delete>
+
+</mapper>

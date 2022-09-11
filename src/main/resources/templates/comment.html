@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>评论</title>
+</head>
+<body>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>username</th>
+        <th>comment</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="comment:${comments}">
+        <td th:text="${comment.topicid}"></td>
+        <td th:text="${comment.commentid}"></td>
+        <td th:text="${comment.username}"></td>
+        <td th:text="${comment.comment}"></td>
+    </tr>
+</table>
+
+<h5>点赞数目</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>username</th>
+        <th>count</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="likeCount:${likeCounts}">
+        <td th:text="${likeCount.topicid}"></td>
+        <td th:text="${likeCount.commentid}"></td>
+        <td th:text="${likeCount.username}"></td>
+        <td th:text="${likeCount.count}"></td>
+    </tr>
+</table>
+
+<h5>添加评论</h5>
+<form name="form" accept-charset="utf-8" action="/insertComment">
+    <div class="inputOuter2">
+        commentid:<input type="text" id="commentid" name="commentid" placeholder="请输入..." maxlength="16" />
+    </div>
+    <div class="inputOuter2">
+        comment:<input type="text" id="comment" name="comment" placeholder="请输入..." maxlength="1000" />
+    </div>
+    <div >
+        <input type="submit" value="添加"/>
+    </div>
+</form>
+
+<form name="form" accept-charset="utf-8" action="/opinion">
+    <div class="inputOuter2">
+        查询评论的看法的commentid:<input type="text" id="commentid1" name="commentid" maxlength="16" />
+    </div>
+    <div>
+        <input type="submit" value="查询"/>
+    </div>
+</form>
+
+<h5>对评论进行点赞</h5>
+<form name="form" accept-charset="utf-8" action="/like">
+    <div class="inputOuter2">
+        点赞的commentid:<input type="text" id="commentid2" name="commentid" maxlength="16" />
+    </div>
+    <div>
+        <input type="submit" value="点赞"/>
+    </div>
+</form>
+<h5>对评论进行取消点赞</h5>
+<form name="form" accept-charset="utf-8" action="/deletelike">
+    <div class="inputOuter2">
+        取消点赞的commentid:<input type="text" id="commentid3" name="commentid" maxlength="16" />
+    </div>
+    <div>
+        <input type="submit" value="取消点赞"/>
+    </div>
+</form>
+</body>
+</html>

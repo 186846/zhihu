@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.StarCountDao">
+    <!-- 按照starname查找 -->
+    <select id="selectByStarname" resultType="com.example.demo222.entity.Star">
+        select * from star where starname = #{starname};
+    </select>
+    <!--在注册的时候插入新的数据-->
+    <insert id="insert" parameterType="com.example.demo222.entity.Star">
+        insert star (starname,count) values (#{starname},#{count});
+    </insert>
+    <!--更新数据-->
+    <update id="update">
+        update star
+        <set >
+            <if test="starname != null" >
+                starname = #{starname,jdbcType=VARCHAR},
+            </if>
+
+            <if test="count != null" >
+                count = #{count,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where starname = #{starname,jdbcType=INTEGER}
+    </update>
+</mapper>

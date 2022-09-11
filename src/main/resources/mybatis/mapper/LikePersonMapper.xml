@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.LikePersonDao">
+    <!--根据topicid，commentid，username查询-->
+    <select id="selectById" resultType="com.example.demo222.entity.LikePerson">
+        select * from likeperson where topicid = #{topicid} and commentid = #{commentid} and username = #{username};
+    </select>
+    <!--插入新的点赞信息-->
+    <insert id="insert" parameterType="com.example.demo222.entity.LikePerson">
+        insert likeperson (topicid,commentid,username) values (#{topicid},#{commentid},#{username});
+    </insert>
+    <!-- 按照commentid删除用户点赞数据 -->
+    <delete id="delete" parameterType="com.example.demo222.entity.LikePerson">
+        delete from likeperson where topicid = #{topicid} and commentid = #{commentid} and username = #{username};
+    </delete>
+</mapper>

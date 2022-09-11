@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h5>我的粉丝数：</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>姓名</th>
+        <th>粉丝数</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr>
+        <th th:text="${name}">姓名<th>
+       <th th:text="${count}">粉丝数</th>
+    </tr>
+</table>
+<h5>我的粉丝:</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>starname</th>
+        <th>fanname</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="fan:${fans}">
+        <td th:text="${fan.starname}"></td>
+        <td th:text="${fan.fanname}"></td>
+    </tr>
+</table>
+</body>
+</html>

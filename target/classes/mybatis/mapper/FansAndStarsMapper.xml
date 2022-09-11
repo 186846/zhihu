@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.FansAndStarsDao">
+    <!--通过selectbystarname查询自己的粉丝集体-->
+    <select id="selectbystarname" resultType="com.example.demo222.entity.FansAndStars">
+        select * from fansandstars where starname = #{starname};
+    </select>
+    <!--通过selectbyfanname查询自己的偶像集体-->
+    <select id="selectbyfanname" resultType="com.example.demo222.entity.FansAndStars">
+        select * from fansandstars where fanname = #{fanname};
+    </select>
+    <!--通过两个元素查找个体-->
+    <select id="selectbyname" resultType="com.example.demo222.entity.FansAndStars">
+        select * from fansandstars where starname = #{starname} and fanname = #{fanname};
+    </select>
+    <!--插入新的数据-->
+    <insert id="insert" parameterType="com.example.demo222.entity.FansAndStars">
+        insert fansandstars (starname,fanname) values (#{starname},#{fanname});
+    </insert>
+    <!--删除数据-->
+    <delete id="delete" parameterType="com.example.demo222.entity.FansAndStars">
+        delete from fansandstars where starname = #{starname} and fanname = #{fanname};
+    </delete>
+</mapper>
