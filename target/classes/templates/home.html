@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的记录</title>
+</head>
+<body>
+<h2 th:text="${Hostname}">姓名</h2>
+
+<a th:href="@{http://localhost:8080/fans}">粉丝</a>
+
+<a th:href="@{http://localhost:8080/stars}">偶像</a>
+
+<h5>我的收藏:</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>username</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="collectionPeople:${collectionPeoples}">
+        <td th:text="${collectionPeople.topicid}"></td>
+        <td th:text="${collectionPeople.username}"></td>
+    </tr>
+</table>
+
+<h5>我的问题被收藏数:</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>username</th>
+        <th>count</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="collectionCount:${collectionCounts}">
+        <td th:text="${collectionCount.topicid}"></td>
+        <td th:text="${collectionCount.username}"></td>
+        <td th:text="${collectionCount.count}"></td>
+    </tr>
+</table>
+
+<h5>我评论的点赞数</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>username</th>
+        <th>count</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="likeCount:${likeCounts}">
+        <td th:text="${likeCount.topicid}"></td>
+        <td th:text="${likeCount.commentid}"></td>
+        <td th:text="${likeCount.username}"></td>
+        <td th:text="${likeCount.count}"></td>
+    </tr>
+</table>
+
+<h5>我发起的问题：</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>username</th>
+        <th>title</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="topic:${questions1}">
+        <td th:text="${topic.topicid}"></td>
+        <td th:text="${topic.username}"></td>
+        <td th:text="${topic.title}"></td>
+    </tr>
+</table>
+<h5>我的问题的回复:</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>username</th>
+        <th>comment</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="comment:${comments1}">
+        <td th:text="${comment.topicid}"></td>
+        <td th:text="${comment.username}"></td>
+        <td th:text="${comment.comment}"></td>
+    </tr>
+</table>
+
+<h5>我的评论</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>username</th>
+        <th>comment</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="comment:${comments2}">
+        <td th:text="${comment.topicid}"></td>
+        <td th:text="${comment.commentid}"></td>
+        <td th:text="${comment.username}"></td>
+        <td th:text="${comment.comment}"></td>
+    </tr>
+</table>
+<!-- 我对其他人回答的看法 -->
+<h5>我对其他人回答的看法</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>opinionid</th>
+        <th>username</th>
+        <th>opinion</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="opinion:${opinions}">
+        <td th:text="${opinion.topicid}"></td>
+        <td th:text="${opinion.commentid}"></td>
+        <td th:text="${opinion.opinionid}"></td>
+        <td th:text="${opinion.username}"></td>
+        <td th:text="${opinion.opinion}"></td>
+    </tr>
+</table>
+
+
+<!--删除我的问题-->
+<h5>删除我的问题</h5>
+<form name="form" accept-charset="utf-8" action="/delete">
+    <div class="inputOuter2">
+        topicid:<input type="text" id="topicid2" name="topicid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div >
+        <input type="submit" value="删除"/>
+    </div>
+</form>
+
+<!--删除回答-->
+<h5>删除我的回答</h5>
+<form name="form" accept-charset="utf-8" action="/delete1">
+    <div class="inputOuter2">
+        topicid:<input type="text" id="topicid" name="topicid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div class="inputOuter2">
+        commentid:<input type="text" id="commentid2" name="commentid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div >
+        <input type="submit" value="删除"/>
+    </div>
+</form>
+<!--删除回答的观点-->
+<h5>删除我的回答观点</h5>
+<form name="form" accept-charset="utf-8" action="/delete2">
+    <div class="inputOuter2">
+        topicid:<input type="text" id="topicid1" name="topicid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div class="inputOuter2">
+        commentid:<input type="text" id="commentid3" name="commentid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div class="inputOuter2">
+        opinionid:<input type="text" id="opinionid" name="opinionid" placeholder="请输入..." maxlength="16" />
+    </div>
+    <div>
+        <input type="submit" value="删除"/>
+    </div>
+</form>
+
+<!--移除收藏-->
+<h5>移除收藏</h5>
+<form name="form" accept-charset="utf-8" action="/delete3">
+    <div class="inputOuter2">
+        topicid:<input type="text" id="topicid5" name="topicid" placeholder="请输入..." maxlength="16" />
+    </div>
+
+    <div >
+        <input type="submit" value="删除"/>
+    </div>
+</form>
+
+</body>
+</html>

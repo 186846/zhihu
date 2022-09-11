@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>观点</title>
+</head>
+<body>
+<table border="1" width="50%">
+    <tr>
+        <th>topicid</th>
+        <th>commentid</th>
+        <th>opinionid</th>
+        <th>username</th>
+        <th>opinion</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="opinion:${opinions}">
+        <td th:text="${opinion.topicid}"></td>
+        <td th:text="${opinion.commentid}"></td>
+        <td th:text="${opinion.opinionid}"></td>
+        <td th:text="${opinion.username}"></td>
+        <td th:text="${opinion.opinion}"></td>
+    </tr>
+</table>
+
+<h5>添加评论的看法</h5>
+<form name="form" accept-charset="utf-8" action="/insertOpinion">
+    <div class="inputOuter2">
+        opinionid:<input type="text" id="opinionid" name="opinionid" placeholder="请输入..." maxlength="16" />
+    </div>
+    <div class="inputOuter2">
+        opinion:<input type="text" id="opinion" name="opinion" placeholder="请输入..." maxlength="1000" />
+    </div>
+    <div >
+        <input type="submit" value="添加"/>
+    </div>
+</form>
+</body>
+</html>

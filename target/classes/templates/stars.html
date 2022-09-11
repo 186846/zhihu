@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我关注的人</title>
+</head>
+<body>
+<h5>我的关注数：</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>姓名</th>
+        <th>关注人数</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr>
+        <td th:text="${name}">姓名<th>
+        <td th:text="${count}">关注人数</td>
+    </tr>
+</table>
+<h5>我的关注:</h5>
+<table border="1" width="50%">
+    <tr>
+        <th>starname</th>
+        <th>fanname</th>
+    </tr>
+    <!-- 遍历集合的每一项起名为user  -->
+    <tr th:each="star:${stars}">
+        <td th:text="${star.starname}"></td>
+        <td th:text="${star.fanname}"></td>
+    </tr>
+</table>
+<form name="form" accept-charset="utf-8" action="/deletestar">
+    <div class="inputOuter2">
+        请输入取消关注的对象的名字:<input type="text" id="starname" name="starname" maxlength="16" />
+    </div>
+    <div>
+        <input type="submit" value="取消关注"/>
+    </div>
+</form>
+</body>
+</html>

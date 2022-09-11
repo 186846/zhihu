@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.FanCountDao">
+    <!-- 按照fanname查找关注数 -->
+    <select id="selectByFanname" resultType="com.example.demo222.entity.Fan">
+        select * from fan where fanname = #{fanname}
+    </select>
+    <!--在注册的时候插入新的数据-->
+    <insert id="insert" parameterType="com.example.demo222.entity.Fan">
+        insert fan (fanname,count) values (#{fanname},#{count})
+    </insert>
+    <!--更新数据-->
+    <update id="update">
+        update fan
+        <set >
+            <if test="fanname != null" >
+                fanname = #{fanname,jdbcType=VARCHAR},
+            </if>
+
+            <if test="count != null" >
+                count = #{count,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where fanname = #{fanname,jdbcType=INTEGER}
+    </update>
+</mapper>

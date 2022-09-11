@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo222.dao.OpinionDao">
+    <select id="selectOpinion" resultType="com.example.demo222.entity.Opinion">
+        select * from opinion where topicid=#{topicid} and commentid=#{commentid};
+    </select>
+    <!-- 插入回答的观点 -->
+    <insert id="save" parameterType="com.example.demo222.entity.Opinion">
+        insert opinion (topicid,commentid,opinionid,username,opinion) values (#{topicid},#{commentid},#{opinionid},#{username},#{opinion});
+    </insert>
+    <!-- 通过topicid,commentid,opinionid删除回答的观点 -->
+    <delete id="deleteById">
+        delete from opinion where topicid=#{topicid} and commentid = #{commentid} and opinionid = #{opinionid};
+    </delete>
+
+    <!-- 通过username查询回答的观点 -->
+    <select id="selectByUsername" resultType="com.example.demo222.entity.Opinion">
+        select * from opinion where username = #{username};
+    </select>
+</mapper>
